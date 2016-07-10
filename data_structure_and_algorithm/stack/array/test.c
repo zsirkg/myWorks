@@ -6,36 +6,29 @@
 static void stackApiTest(void)
 {
     int i;
-    STACK element;
+    stackT stack;
+    stackElementT element;
 
-    stackPush(0);
-    stackPop(0);
-    stackIsEmpty();
-    stackLength();
-    createStack(STACK_SIZE);
-    createStack(STACK_SIZE);
-    destoryStack();
-    createStack(STACK_SIZE);
+    createStack(&stack, STACK_SIZE);
     for(i = 0; i < STACK_SIZE; i++) {
+        stackPush(&stack, i);
         printf("push %d\n", i);
-        stackPush(i);
     }
-    printf("length:%d\n", stackLength());
-    stackPush(0); //stack is full
 
     for(i = 0; i < STACK_SIZE; i++) {
-        stackPop(&element);
+        stackPop(&stack, &element);
         printf("pop %d\n", element);
     }
-    stackPop(&element); //stack is empty
 
-    destoryStack();
-    stackPush(0); //stack is not exsit;
+    destoryStack(&stack);
 }
 
 int main(void)
 {
-    stackApiTest(); 
+    int cnt = 1;
+
+    while(cnt--)
+        stackApiTest(); 
 
     return 0;
 }

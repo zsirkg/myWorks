@@ -3,96 +3,56 @@
 #include <string.h>
 #include "stack.h"
 
-static int stackTop = -1;
-static int stackSize = -1;
-static int *stack = NULL;
-
-int createStack(int size)
+int createStack(stackT *stack, int size)
 {
-    if(stack) {
-        printf("stack had created!\n");
-        return -1;
-    }
-
-    stackTop = -1;
-    stackSize = size;
-    stack = (STACK *)malloc(sizeof(STACK) * size);
-    if(NULL == stack) {
+    stack->contents = (stackElementT *)malloc(sizeof(stackElementT) * size);
+    if(NULL == stack->contents) {
         perror("malloc");
         return -1;
     }
+    stack->top = -1;
+    stack->size = size;
 
     return 0;
 }
 
-void destoryStack(void)
+void destoryStack(stackT *stack)
 {
-    free(stack);
-    stack = NULL;
+    free(stack->contents);
+    stack->contents = NULL;
 }
 
-int stackIsEmpty(void)
+int stackIsEmpty(stackT *stack)
 {
-    if(NULL == stack) {
-        printf("stack is not exist.\n");
-        return -1;
-    }
-
-    if(-1 == stackTop) {
+    if(-1 == stack->top) {
         return 1;
     } else {
         return 0;
     }
 }
 
-int stackLength(void)
+int stackPush(stackT *stack, stackElementT element)
 {
-    if(NULL == stack) {
-        printf("stack is not exist.\n");
-        return -1;
-    }
-
-    return stackTop + 1; /* stack top is begin from zero.*/
-}
-
-
-int stackPush(STACK element)
-{
-    if(NULL == stack) {
-        printf("stack is not exist.\n");
-        return -1;
-    }
-
-    if(stackTop == stackSize - 1) {
+    if(stack->top == stack->size - 1) {
         printf("stack is full.\n");
         return -1;
     }
 
-    memcpy(&stack[stackTop], &element, sizeof(STACK));
-    stackTop++;
+    stack->top++;
+    stack->contents[stack->top] = element;
 
     return 0;
 }
 
-int stackPop(STACK *element)
+int stackPop(stackT *stack, stackElementT *element)
 {
-    if(NULL == stack) {
-        printf("stack is not exist.\n");
-        return -1;
-    }
-
-    if(NULL == element) {
-        printf("element is NULL.\n");
-        return -1;
-    }
-
-    if(stackIsEmpty()) {
+    if(stackIsEmpty(stack)) {
         printf("stack is empty.\n");
         return -1;
     }
 
-    stackTop--;
-    memcpy(element, &stack[stackTop], sizeof(STACK));
+    *element = stack->contents[stack->top];
+    stack->top--;
 
     return 0;
 }
