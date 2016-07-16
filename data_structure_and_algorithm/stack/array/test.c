@@ -9,7 +9,7 @@ static void stackApiTest(void)
     stackT stack;
     stackElementT element;
 
-    createStack(&stack, STACK_SIZE);
+    initStack(&stack, STACK_SIZE);
     for(i = 0; i < STACK_SIZE; i++) {
         stackPush(&stack, i);
         printf("push %d\n", i);

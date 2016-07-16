@@ -3,7 +3,7 @@
 #include <string.h>
 #include "stack.h"
 
-int createStack(stackT *stack, int size)
+int initStack(stackT *stack, int size)
 {
     stack->contents = (stackElementT *)malloc(sizeof(stackElementT) * size);
     if(NULL == stack->contents) {

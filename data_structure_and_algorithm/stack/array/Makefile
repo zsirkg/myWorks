@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = 
-PROG = stack_test
+PROG = test_stack
 OBJ = stack.o test.o
 
 all: $(PROG)

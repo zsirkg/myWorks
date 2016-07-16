@@ -8,7 +8,7 @@ typedef struct stack {
     stackElementT *contents;
 }stackT;
 
-int createStack(stackT *stack, int size);
+int initStack(stackT *stack, int size);
 void destoryStack(stackT *stack);
 int stackIsEmpty(stackT *stack);
 int stackPush(stackT *stack, stackElementT element);
