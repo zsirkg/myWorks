@@ -25,6 +25,10 @@ void destroyList(List *list)
 {
     Node *cur, *tmp;
 
+    if(list == NULL) {
+        return;
+    }
+
     cur = list->head;
     while(cur != NULL) {
         tmp = cur->next;
@@ -57,10 +61,6 @@ int listInsert(List *list, int data, int position)
     Node *newNode;
     int i = 0;
 
-    if(list->head == NULL) {
-        printf("list have not initialized\n");
-        return -1;
-    }
     if(position < 0 || position > list->length) {
         printf("insert node position:%d is invalid\n", position);
         return -1;
@@ -89,10 +89,6 @@ int listDelete(List *list, int position)
     int i;
     Node *cur, *del;
 
-    if(list->head == NULL) {
-        printf("list have not initialized\n");
-        return -1;
-    }
     if(list->length == 0) {
         printf("list is Empty\n");
         return -1;
@@ -122,10 +118,6 @@ int listGet(List *list, int position)
     int i;
     Node *cur;
 
-    if(list->head == NULL) {
-        printf("list have not initialized\n");
-        return -1;
-    }
     if(list->length == 0) {
         printf("list is Empty\n");
         return -1;
@@ -146,10 +138,6 @@ int listGet(List *list, int position)
 void listTraverse(List *list)
 {
     Node *cur;
-
-    if(list->head == NULL || list->head->next == NULL) {
-        return;
-    }
 
     for(cur = list->head->next; cur != NULL; cur = cur->next) {
         printf("[%s] %d\n", __FUNCTION__, cur->data);
