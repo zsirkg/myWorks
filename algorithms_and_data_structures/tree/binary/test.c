@@ -28,8 +28,11 @@ int main(int argc, char *argv[])
     insertNode(tree, 1, LEFT, 3);
     insertNode(tree, 1, RIGHT, 4);
 
+	printf("preorder\n");
     preorderTraversal(tree);
+	printf("inorder\n");
     inorderTraversal(tree);
+	printf("postorder\n");
 	postorderTraversal(tree);
 
 	printf("delete 3\n");
