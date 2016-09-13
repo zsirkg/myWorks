@@ -1,0 +1,10 @@
+The elements in an associative container are ordered and accessed by key. The
+associative containers support efficient lookup and retrieval of elements by key. The use
+of a key distinguishes them from the sequential containers, in which elements are
+accessed positionally.
+The map and multimap types store elements that are keyvalue pairs. These types use the
+library pair class, defined in the utility header, to represent these pairs. Dereferencing a
+map or multimap iterator yields a value that is a pair. The first member of the pair is a
+const key, and the second member is a value associated with that key. The set and
+multiset types store keys. The map and set types allow only one element with a given key.
+The multimap and multiset types allow multiple elements with the same key.
