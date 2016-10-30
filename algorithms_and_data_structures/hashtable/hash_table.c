@@ -3,9 +3,6 @@
 #include <string.h>
 #include "hash_table.h"
 
-static Node_T *createNode(Info_T *info);
-static BOOL nodeLookup(Node_T *head, Info_T *targetInfo);
-
 static BOOL hasInit = FALSE;
 static int hash(Info_T *info)
 {
